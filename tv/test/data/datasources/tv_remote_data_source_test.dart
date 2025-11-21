@@ -26,7 +26,7 @@ void main() {
   group('get On The Air TVs', () {
     final tTvList =
         TvResponse.fromJson(
-          json.decode(readJson('dummy_data/on_the_air.json')),
+          json.decode(readJson('dummy_data/tv/on_the_air.json')),
         ).tvList;
 
     test(
@@ -36,7 +36,7 @@ void main() {
           mockHttpClient.get(Uri.parse('$baseUrl/tv/on_the_air?$apiKey')),
         ).thenAnswer(
           (_) async =>
-              http.Response(readJson('dummy_data/on_the_air.json'), 200),
+              http.Response(readJson('dummy_data/tv/on_the_air.json'), 200),
         );
 
         final result = await dataSource.getNowPlayingTvs();
@@ -62,14 +62,14 @@ void main() {
   group('get Popular TVs', () {
     final tTvList =
         TvResponse.fromJson(
-          json.decode(readJson('dummy_data/popular.json')),
+          json.decode(readJson('dummy_data/tv/popular.json')),
         ).tvList;
 
     test('should return list of tvs when response is success (200)', () async {
       when(
         mockHttpClient.get(Uri.parse('$baseUrl/tv/popular?$apiKey')),
       ).thenAnswer(
-        (_) async => http.Response(readJson('dummy_data/popular.json'), 200),
+        (_) async => http.Response(readJson('dummy_data/tv/popular.json'), 200),
       );
 
       final result = await dataSource.getPopularTvs();
@@ -94,7 +94,7 @@ void main() {
   group('get Top Rated TVs', () {
     final tTvList =
         TvResponse.fromJson(
-          json.decode(readJson('dummy_data/top_rated.json')),
+          json.decode(readJson('dummy_data/tv/top_rated.json')),
         ).tvList;
 
     test('should return list of tvs when response code is 200 ', () async {
@@ -102,7 +102,7 @@ void main() {
         mockHttpClient.get(Uri.parse('$baseUrl/tv/top_rated?$apiKey')),
       ).thenAnswer(
         (_) async =>
-            http.Response(readJson('dummy_data/top_rated.json'), 200),
+            http.Response(readJson('dummy_data/tv/top_rated.json'), 200),
       );
 
       final result = await dataSource.getTopRatedTvs();
@@ -127,7 +127,7 @@ void main() {
   group('get tv detail', () {
     final tId = 1;
     final tTvDetail = TvDetailResponse.fromJson(
-      json.decode(readJson('dummy_data/tv_detail.json')),
+      json.decode(readJson('dummy_data/tv/tv_detail.json')),
     );
 
     test('should return tv detail when the response code is 200', () async {
@@ -135,7 +135,7 @@ void main() {
         mockHttpClient.get(Uri.parse('$baseUrl/tv/$tId?$apiKey')),
       ).thenAnswer(
         (_) async =>
-            http.Response(readJson('dummy_data/tv_detail.json'), 200),
+            http.Response(readJson('dummy_data/tv/tv_detail.json'), 200),
       );
 
       final result = await dataSource.getTvDetail(tId);
@@ -160,7 +160,7 @@ void main() {
   group('get tv recommendations', () {
     final tTvList =
         TvResponse.fromJson(
-          json.decode(readJson('dummy_data/tv_recommendations.json')),
+          json.decode(readJson('dummy_data/tv/tv_recommendations.json')),
         ).tvList;
     final tId = 1;
 
@@ -173,7 +173,7 @@ void main() {
           ),
         ).thenAnswer(
           (_) async => http.Response(
-            readJson('dummy_data/tv_recommendations.json'),
+            readJson('dummy_data/tv/tv_recommendations.json'),
             200,
           ),
         );
@@ -203,7 +203,7 @@ void main() {
   group('search tvs', () {
     final tSearchResult =
         TvResponse.fromJson(
-          json.decode(readJson('dummy_data/search_breaking_bad.json')),
+          json.decode(readJson('dummy_data/tv/search_breaking_bad.json')),
         ).tvList;
     final tQuery = 'Breaking Bad';
 
@@ -214,7 +214,7 @@ void main() {
         ),
       ).thenAnswer(
         (_) async => http.Response(
-          readJson('dummy_data/search_breaking_bad.json'),
+          readJson('dummy_data/tv/search_breaking_bad.json'),
           200,
         ),
       );

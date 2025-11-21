@@ -28,7 +28,7 @@ void main() {
   group('fromJson', () {
     test('should return a valid model from JSON', () async {
       final Map<String, dynamic> jsonMap = json.decode(
-        readJson('dummy_data/now_playing.json'),
+        readJson('dummy_data/movies/now_playing.json'),
       );
 
       final result = MovieResponse.fromJson(jsonMap);

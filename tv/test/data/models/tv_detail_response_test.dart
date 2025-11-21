@@ -34,7 +34,7 @@ void main() {
   group('fromJson', () {
     test('should return a valid model from JSON', () {
       final Map<String, dynamic> jsonMap = json.decode(
-        readJson('dummy_data/tv_detail.json'),
+        readJson('dummy_data/tv/tv_detail.json'),
       );
 
       final result = TvDetailResponse.fromJson(jsonMap);

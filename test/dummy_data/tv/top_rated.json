@@ -1,0 +1,25 @@
+{
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/path.jpg",
+            "genre_ids": [
+                18,
+                80
+            ],
+            "id": 3,
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Top Rated TV Show",
+            "overview": "Top rated TV overview",
+            "popularity": 150.0,
+            "poster_path": "/poster.jpg",
+            "first_air_date": "2023-01-01",
+            "name": "Top Rated TV Show",
+            "vote_average": 9.5,
+            "vote_count": 3000
+        }
+    ]
+}

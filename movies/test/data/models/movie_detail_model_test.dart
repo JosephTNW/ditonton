@@ -9,7 +9,7 @@ void main() {
   group('MovieDetailModel', () {
     group('fromJson', () {
       test('should return a valid model from JSON', () async {
-        final jsonString = readJson('dummy_data/movie_detail.json');
+        final jsonString = readJson('dummy_data/movies/movie_detail.json');
         final Map<String, dynamic> jsonMap = json.decode(jsonString);
 
         final result = MovieDetailResponse.fromJson(jsonMap);
@@ -21,7 +21,7 @@ void main() {
 
     group('toJson', () {
       test('should return a JSON map containing proper data', () async {
-        final jsonString = readJson('dummy_data/movie_detail.json');
+        final jsonString = readJson('dummy_data/movies/movie_detail.json');
         final Map<String, dynamic> jsonMap = json.decode(jsonString);
         final movieDetail = MovieDetailResponse.fromJson(jsonMap);
 
@@ -36,7 +36,7 @@ void main() {
 
     group('toEntity', () {
       test('should convert to MovieDetail entity', () async {
-        final jsonString = readJson('dummy_data/movie_detail.json');
+        final jsonString = readJson('dummy_data/movies/movie_detail.json');
         final Map<String, dynamic> jsonMap = json.decode(jsonString);
         final movieDetailModel = MovieDetailResponse.fromJson(jsonMap);
 

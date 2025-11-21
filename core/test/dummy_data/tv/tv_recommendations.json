@@ -1,0 +1,25 @@
+{
+    "results": [
+        {
+            "adult": false,
+            "backdrop_path": "/path.jpg",
+            "genre_ids": [
+                18,
+                80
+            ],
+            "id": 4,
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Recommended TV Show",
+            "overview": "Recommended TV overview",
+            "popularity": 120.0,
+            "poster_path": "/poster.jpg",
+            "first_air_date": "2023-01-01",
+            "name": "Recommended TV Show",
+            "vote_average": 8.0,
+            "vote_count": 1500
+        }
+    ]
+}

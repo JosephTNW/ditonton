@@ -103,4 +103,37 @@ void main() {
 
     expect(textFieldFinder, findsOneWidget);
   });
+
+  testWidgets('TextField should trigger search when text is entered', (
+    WidgetTester tester,
+  ) async {
+    when(() => mockBloc.state).thenReturn(
+      TvSearchState(state: RequestState.Empty, searchResult: [], message: ''),
+    );
+
+    await tester.pumpWidget(_makeTestableWidget(SearchTvPage()));
+
+    final textFieldFinder = find.byType(TextField);
+    expect(textFieldFinder, findsOneWidget);
+
+    // Enter text into the TextField
+    await tester.enterText(textFieldFinder, 'Game of Thrones');
+    await tester.pump();
+
+    // Verify that the OnTvQueryChanged event is added
+    verify(() => mockBloc.add(OnTvQueryChanged('Game of Thrones'))).called(1);
+  });
+
+  testWidgets('TextField should have correct hint text and icon', (
+    WidgetTester tester,
+  ) async {
+    when(() => mockBloc.state).thenReturn(
+      TvSearchState(state: RequestState.Empty, searchResult: [], message: ''),
+    );
+
+    await tester.pumpWidget(_makeTestableWidget(SearchTvPage()));
+
+    expect(find.text('Search TV series title'), findsOneWidget);
+    expect(find.byIcon(Icons.search), findsOneWidget);
+  });
 }

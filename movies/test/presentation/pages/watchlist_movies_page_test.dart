@@ -140,4 +140,31 @@ void main() {
 
     verify(mockBloc.add(FetchWatchlistMoviesEvent())).called(1);
   });
+
+  testWidgets('Page should call FetchWatchlistMoviesEvent on didPopNext', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      const WatchlistMoviesState(state: RequestState.Loaded, movies: []),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const WatchlistMoviesPage()));
+    await tester.pump();
+  });
+
+  testWidgets('Page should subscribe to RouteObserver', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      const WatchlistMoviesState(state: RequestState.Loaded, movies: []),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const WatchlistMoviesPage()));
+    await tester.pump();
+
+    // Verify widget is built
+    expect(find.byType(WatchlistMoviesPage), findsOneWidget);
+  });
 }

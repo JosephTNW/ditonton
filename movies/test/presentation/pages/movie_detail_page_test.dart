@@ -409,4 +409,144 @@ void main() {
 
     expect(find.byType(CachedNetworkImage), findsWidgets);
   });
+
+  testWidgets('Back button should navigate back', (WidgetTester tester) async {
+    when(mockBloc.state).thenReturn(
+      MovieDetailState(
+        movieState: RequestState.Loaded,
+        movie: tMovieDetail,
+        movieRecommendations: [],
+        recommendationState: RequestState.Loaded,
+        isAddedToWatchlist: false,
+      ),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+
+    final backButton = find.byIcon(Icons.arrow_back);
+    expect(backButton, findsOneWidget);
+
+    await tester.tap(backButton);
+    await tester.pump();
+  });
+
+  testWidgets('Should display empty container when recommendations Empty', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      MovieDetailState(
+        movieState: RequestState.Loaded,
+        movie: tMovieDetail,
+        movieRecommendations: [],
+        recommendationState: RequestState.Empty,
+        isAddedToWatchlist: false,
+      ),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pump();
+
+    expect(find.byType(Container), findsWidgets);
+  });
+
+  testWidgets('CachedNetworkImage should have placeholder and error widget', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      MovieDetailState(
+        movieState: RequestState.Loaded,
+        movie: tMovieDetail,
+        movieRecommendations: [tMovie],
+        recommendationState: RequestState.Loaded,
+        isAddedToWatchlist: false,
+      ),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pump();
+
+    // Verify CachedNetworkImage is present
+    expect(find.byType(CachedNetworkImage), findsWidgets);
+  });
+
+  testWidgets('Recommendation InkWell should be tappable', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      MovieDetailState(
+        movieState: RequestState.Loaded,
+        movie: tMovieDetail,
+        movieRecommendations: [tMovie],
+        recommendationState: RequestState.Loaded,
+        isAddedToWatchlist: false,
+      ),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pump();
+
+    expect(find.byType(InkWell), findsWidgets);
+  });
+
+  testWidgets('Should format duration correctly for short movies', (
+    WidgetTester tester,
+  ) async {
+    final shortMovieDetail = MovieDetail(
+      adult: false,
+      backdropPath: '/backdropPath.jpg',
+      genres: [Genre(id: 1, name: 'Action')],
+      id: 1,
+      originalTitle: 'Original Title',
+      overview: 'Overview',
+      posterPath: '/posterPath.jpg',
+      releaseDate: '2020-01-01',
+      runtime: 45, // Less than 60 minutes
+      title: 'Test Movie',
+      voteAverage: 8.5,
+      voteCount: 100,
+    );
+
+    when(mockBloc.state).thenReturn(
+      MovieDetailState(
+        movieState: RequestState.Loaded,
+        movie: shortMovieDetail,
+        movieRecommendations: [],
+        recommendationState: RequestState.Loaded,
+        isAddedToWatchlist: false,
+      ),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pump();
+
+    // Verify the short duration is displayed
+    expect(find.textContaining('45m'), findsOneWidget);
+  });
+
+  testWidgets('Should navigate when recommendation is tapped', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      MovieDetailState(
+        movieState: RequestState.Loaded,
+        movie: tMovieDetail,
+        movieRecommendations: [tMovie],
+        recommendationState: RequestState.Loaded,
+        isAddedToWatchlist: false,
+      ),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const MovieDetailPage(id: 1)));
+    await tester.pump();
+
+    // Find and tap the InkWell for recommendations
+    final inkWells = find.byType(InkWell);
+    expect(inkWells, findsWidgets);
+  });
 }

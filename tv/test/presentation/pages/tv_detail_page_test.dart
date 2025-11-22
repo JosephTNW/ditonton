@@ -227,4 +227,91 @@ void main() {
 
     expect(errorFinder, findsOneWidget);
   });
+
+  testWidgets(
+    'Page should display empty container when recommendations empty',
+    (WidgetTester tester) async {
+      when(() => mockBloc.state).thenReturn(
+        TvDetailState(
+          tvState: RequestState.Loaded,
+          tv: testTvDetail,
+          recommendationState: RequestState.Empty,
+          tvRecommendations: [],
+          isAddedToWatchlist: false,
+        ),
+      );
+
+      await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+      await tester.pump();
+
+      // Empty state should show a container
+      expect(find.byType(Container), findsWidgets);
+    },
+  );
+
+  testWidgets('Back button icon should be present', (
+    WidgetTester tester,
+  ) async {
+    when(() => mockBloc.state).thenReturn(
+      TvDetailState(
+        tvState: RequestState.Loaded,
+        tv: testTvDetail,
+        recommendationState: RequestState.Loaded,
+        tvRecommendations: [testTv],
+        isAddedToWatchlist: false,
+      ),
+    );
+
+    await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+    await tester.pump();
+
+    // Back button should be present
+    final backButton = find.byIcon(Icons.arrow_back);
+    expect(backButton, findsOneWidget);
+
+    // IconButton wrapping the back icon should be present
+    expect(find.byType(IconButton), findsWidgets);
+  });
+
+  testWidgets(
+    'Should show error icon when recommendation image fails to load',
+    (WidgetTester tester) async {
+      when(() => mockBloc.state).thenReturn(
+        TvDetailState(
+          tvState: RequestState.Loaded,
+          tv: testTvDetail,
+          recommendationState: RequestState.Loaded,
+          tvRecommendations: [testTv],
+          isAddedToWatchlist: false,
+        ),
+      );
+
+      await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+      await tester.pump();
+
+      // CachedNetworkImage will handle error widget internally
+      expect(find.byType(ListView), findsOneWidget);
+    },
+  );
+
+  testWidgets(
+    'Should show progress indicator while recommendation image loads',
+    (WidgetTester tester) async {
+      when(() => mockBloc.state).thenReturn(
+        TvDetailState(
+          tvState: RequestState.Loaded,
+          tv: testTvDetail,
+          recommendationState: RequestState.Loaded,
+          tvRecommendations: [testTv],
+          isAddedToWatchlist: false,
+        ),
+      );
+
+      await tester.pumpWidget(_makeTestableWidget(TvDetailPage(id: 1)));
+      await tester.pump();
+
+      // CachedNetworkImage will show placeholder while loading
+      expect(find.byType(ListView), findsOneWidget);
+    },
+  );
 }

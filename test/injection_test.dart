@@ -34,6 +34,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 
 import 'helpers/test_injection_helper.dart';
+import 'helpers/test_helper.mocks.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -41,7 +42,17 @@ void main() {
   group('Dependency Injection', () {
     setUp(() async {
       di.locator.reset();
-      await initTestDependencies();
+
+      di.locator.registerSingletonAsync<http.Client>(
+              () async => MockHttpClient(),
+            );
+            await di.locator.isReady<http.Client>();
+
+      await di.init();
+    });
+
+    tearDown(() async {
+      await di.locator.reset();
     });
 
     test('should initialize all dependencies', () {

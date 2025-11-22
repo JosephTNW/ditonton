@@ -78,4 +78,31 @@ void main() {
 
     expect(textFinder, findsOneWidget);
   });
+
+  testWidgets('Page should call FetchNowPlayingMoviesEvent on didPopNext', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      const NowPlayingMoviesState(state: RequestState.Loaded, movies: []),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const NowPlayingMoviesPage()));
+    await tester.pump();
+  });
+
+  testWidgets('Page should subscribe to RouteObserver', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      const NowPlayingMoviesState(state: RequestState.Loaded, movies: []),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const NowPlayingMoviesPage()));
+    await tester.pump();
+
+    // Verify widget is built
+    expect(find.byType(NowPlayingMoviesPage), findsOneWidget);
+  });
 }

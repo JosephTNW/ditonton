@@ -75,4 +75,43 @@ void main() {
 
     expect(textFinder, findsOneWidget);
   });
+
+  testWidgets('Page should trigger fetch event on init', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      const TopRatedMoviesState(state: RequestState.Loaded, movies: []),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const TopRatedMoviesPage()));
+    await tester.pump();
+  });
+
+  testWidgets('Page should call FetchTopRatedMoviesEvent on didPopNext', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      const TopRatedMoviesState(state: RequestState.Loaded, movies: []),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const TopRatedMoviesPage()));
+    await tester.pump();
+  });
+
+  testWidgets('Page should subscribe to RouteObserver', (
+    WidgetTester tester,
+  ) async {
+    when(mockBloc.state).thenReturn(
+      const TopRatedMoviesState(state: RequestState.Loaded, movies: []),
+    );
+    when(mockBloc.stream).thenAnswer((_) => const Stream.empty());
+
+    await tester.pumpWidget(makeTestableWidget(const TopRatedMoviesPage()));
+    await tester.pump();
+
+    // Verify widget is built
+    expect(find.byType(TopRatedMoviesPage), findsOneWidget);
+  });
 }

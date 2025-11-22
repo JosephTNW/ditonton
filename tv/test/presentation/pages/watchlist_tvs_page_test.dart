@@ -83,4 +83,36 @@ void main() {
 
     expect(textFinder, findsOneWidget);
   });
+
+  testWidgets('Page should call FetchWatchlistTvsEvent on init', (
+    WidgetTester tester,
+  ) async {
+    when(() => mockBloc.state).thenReturn(
+      WatchlistTvsState(state: RequestState.Loaded, tvs: [testTv], message: ''),
+    );
+
+    await tester.pumpWidget(_makeTestableWidget(WatchlistTvsPage()));
+    await tester.pump();
+
+    // The page should be displayed
+    expect(find.byType(WatchlistTvsPage), findsOneWidget);
+
+    // Verify the event was added during initialization
+    verify(
+      () => mockBloc.add(FetchWatchlistTvsEvent()),
+    ).called(greaterThanOrEqualTo(1));
+  });
+
+  testWidgets('Page should display ListView when watchlist is empty', (
+    WidgetTester tester,
+  ) async {
+    when(() => mockBloc.state).thenReturn(
+      WatchlistTvsState(state: RequestState.Loaded, tvs: [], message: ''),
+    );
+
+    await tester.pumpWidget(_makeTestableWidget(WatchlistTvsPage()));
+
+    // Even with empty list, ListView should be present
+    expect(find.byType(ListView), findsOneWidget);
+  });
 }

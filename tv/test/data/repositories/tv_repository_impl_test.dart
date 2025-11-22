@@ -11,7 +11,7 @@ import 'package:tv/domain/entities/tv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import '../../../test/dummy_data/dummy_tv_objects.dart';
+import '../../dummy_data/tv/dummy_tv_objects.dart';
 import '../../../test/helpers/test_helper.mocks.dart';
 
 void main() {

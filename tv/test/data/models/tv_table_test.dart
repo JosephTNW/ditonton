@@ -1,7 +1,7 @@
 import 'package:tv/data/models/tv_table.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import '../../../test/dummy_data/dummy_tv_objects.dart';
+import '../../dummy_data/tv/dummy_tv_objects.dart';
 
 void main() {
   test('should return a valid Tv entity from TvTable', () {

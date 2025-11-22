@@ -9,7 +9,7 @@ import 'package:tv/presentation/bloc/on_the_air_tvs_event.dart';
 import 'package:tv/presentation/bloc/on_the_air_tvs_state.dart';
 import 'package:tv/presentation/pages/on_the_air_tvs_page.dart';
 
-import '../../dummy_data/dummy_tv_objects.dart';
+import '../../dummy_data/tv/dummy_tv_objects.dart';
 
 class MockOnTheAirTvsBloc extends MockBloc<OnTheAirTvsEvent, OnTheAirTvsState>
     implements OnTheAirTvsBloc {}

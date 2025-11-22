@@ -9,7 +9,7 @@ import 'package:tv/presentation/bloc/tv_list_event.dart';
 import 'package:tv/presentation/bloc/tv_list_state.dart';
 import 'package:tv/presentation/pages/home_tv_page.dart';
 
-import '../../dummy_data/dummy_tv_objects.dart';
+import '../../dummy_data/tv/dummy_tv_objects.dart';
 
 class MockTvListBloc extends MockBloc<TvListEvent, TvListState>
     implements TvListBloc {}

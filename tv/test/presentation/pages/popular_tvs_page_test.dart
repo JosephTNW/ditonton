@@ -9,7 +9,7 @@ import 'package:tv/presentation/bloc/popular_tvs_event.dart';
 import 'package:tv/presentation/bloc/popular_tvs_state.dart';
 import 'package:tv/presentation/pages/popular_tvs_page.dart';
 
-import '../../dummy_data/dummy_tv_objects.dart';
+import '../../dummy_data/tv/dummy_tv_objects.dart';
 
 class MockPopularTvsBloc extends MockBloc<PopularTvsEvent, PopularTvsState>
     implements PopularTvsBloc {}

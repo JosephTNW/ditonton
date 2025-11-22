@@ -9,7 +9,7 @@ import 'package:tv/presentation/bloc/tv_detail_event.dart';
 import 'package:tv/presentation/bloc/tv_detail_state.dart';
 import 'package:tv/presentation/pages/tv_detail_page.dart';
 
-import '../../dummy_data/dummy_tv_objects.dart';
+import '../../dummy_data/tv/dummy_tv_objects.dart';
 
 class MockTvDetailBloc extends MockBloc<TvDetailEvent, TvDetailState>
     implements TvDetailBloc {}

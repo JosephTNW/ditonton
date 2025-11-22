@@ -10,7 +10,7 @@ import 'package:tv/presentation/bloc/watchlist_tvs_event.dart';
 import 'package:tv/presentation/bloc/watchlist_tvs_state.dart';
 import 'package:tv/presentation/pages/watchlist_tvs_page.dart';
 
-import '../../dummy_data/dummy_tv_objects.dart';
+import '../../dummy_data/tv/dummy_tv_objects.dart';
 
 class MockWatchlistTvsBloc
     extends MockBloc<WatchlistTvsEvent, WatchlistTvsState>

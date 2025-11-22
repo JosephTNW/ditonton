@@ -55,6 +55,7 @@ dependencies:
       ref: master
   firebase_core: ^4.2.1
   firebase_crashlytics: ^5.0.5
+  firebase_analytics: 12.0.4
 
 dev_dependencies:
   flutter_test:
@@ -89,7 +90,7 @@ flutter:
     - assets/circle-g.png
 
   # To add assets to your application, add an assets section, like this:
-  
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

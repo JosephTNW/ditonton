@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../helpers/test_helper.mocks.dart';
-import '../../dummy_data/dummy_objects.dart';
+import '../../dummy_data/movies/dummy_objects.dart';
 
 void main() {
   late MovieLocalDataSourceImpl dataSource;

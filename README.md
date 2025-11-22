@@ -52,5 +52,15 @@ To run testing on all modules do:
 flutter test test/ core/test/ movies/test/ tv/test/
 ```
 
+## Post Production
+### Continuous Integration with CodeMagic Build Snapshot:
+![Codemagic snapshot](continuous_integration.png)
+
 ### Build Badge:
 [![Codemagic build status](https://api.codemagic.io/apps/691b4ea897a38412fd632840/691b4ea897a38412fd63283f/status_badge.svg)](https://codemagic.io/app/691b4ea897a38412fd632840/691b4ea897a38412fd63283f/latest_build)
+
+### Firebase Analytics
+![Analytics snapshot](firebase_analytics.png)
+
+### Firebase Crashlytics
+![Crashlytics snapshot](firebase_crashlytics.png)
